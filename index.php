@@ -139,7 +139,7 @@ session_start();
             <?php } ?>
         <?php } else { ?>
             <div class="col-12">
-                <p class="text-muted">No reservations found.</p>
+                <p class="text-muted">No reservations found</p>
             </div>
         <?php } ?>
     </div>
