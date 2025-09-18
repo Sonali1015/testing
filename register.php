@@ -21,46 +21,45 @@ if (isset($_SESSION["authenticated"]))
 
     <title>Register</title>
 </head>
-<body class="bg-secondary">
+<body class="bg-light">
 
 <div class="container py-5">
     <div class="row">
         <div class="col-md-12">
-            <h2 class="text-center mb-5">Hotel Management System Registration</h2>
             <div class="row">
                 <div class="col-md-6 mx-auto card-holder">
-                    <div class="card border-secondary">
-                        <div class="card-header">
+                    <div class="card border-secondary" style="background-color: #2c2c2c; color: #f1f1f1;">
+                        <div class="card-header" style="background-color: #333; color: #f1f1f1;">
                             <h3 class="mb-0 my-2">Sign Up</h3>
                         </div>
                         <div class="card-body">
                             <form class="form" role="form" autocomplete="off" id="registration-form" method="post">
                                 <div class="form-group">
-                                    <label for="registrationFullName">Name</label>
-                                    <input type="text" class="form-control"
+                                    <label for="registrationFullName" style="color: #f1f1f1;">Name</label>
+                                    <input type="text" class="form-control bg-secondary text-light border-secondary"
                                            id="registrationFullName"
                                            name="registrationFullName"
                                            placeholder="Full name">
                                 </div>
                                 <div class="form-group">
-                                    <label for="registrationPhoneNumber">Phone Number</label>
-                                    <input type="text" class="form-control"
+                                    <label for="registrationPhoneNumber" style="color: #f1f1f1;">Phone Number</label>
+                                    <input type="text" class="form-control bg-secondary text-light border-secondary"
                                            id="registrationPhoneNumber"
                                            name="registrationPhoneNumber"
                                            placeholder="(123) 456-7890">
                                 </div>
                                 <div class="form-group">
-                                    <label for="registrationEmail">Email</label>
-                                    <span class="red-asterisk"> *</span>
-                                    <input type="email" class="form-control"
+                                    <label for="registrationEmail" style="color: #f1f1f1;">Email</label>
+                                    <span class="red-asterisk" style="color: #ff4d4d;"> *</span>
+                                    <input type="email" class="form-control bg-secondary text-light border-secondary"
                                            id="registrationEmail"
                                            name="registrationEmail"
                                            placeholder="email@domain.com" required="">
                                 </div>
                                 <div class="form-group">
-                                    <label for="registrationPassword">Password</label>
-                                    <span class="red-asterisk"> *</span>
-                                    <input type="password" class="form-control"
+                                    <label for="registrationPassword" style="color: #f1f1f1;">Password</label>
+                                    <span class="red-asterisk" style="color: #ff4d4d;"> *</span>
+                                    <input type="password" class="form-control bg-secondary text-light border-secondary"
                                            id="registrationPassword"
                                            name="registrationPassword"
                                            placeholder="password"
@@ -68,20 +67,19 @@ if (isset($_SESSION["authenticated"]))
                                            required="">
                                 </div>
                                 <div class="form-group">
-                                    <label for="registrationPassword2">Confirm Password</label>
-                                    <span class="red-asterisk"> *</span>
-                                    <input type="password" class="form-control"
+                                    <label for="registrationPassword2" style="color: #f1f1f1;">Confirm Password</label>
+                                    <span class="red-asterisk" style="color: #ff4d4d;"> *</span>
+                                    <input type="password" class="form-control bg-secondary text-light border-secondary"
                                            id="registrationPassword2"
                                            name="registrationPassword2"
                                            placeholder="Retype Password" required="">
                                 </div>
                                 <div class="form-group">
-                                    <p>Already registered? <a href="sign-in.php">Sign in here.</a></p>
+                                    <p style="color: #cccccc;">Already registered? <a href="sign-in.php">Sign in here.</a></p>
                                 </div>
-                                <div class="form-group">
-                                    <a  href="index.php" class="btn btn-dark">Home</a>
-                                    <input type="submit" class="btn btn-primary btn-md float-right"
-                                            name="registerSubmitBtn" value="Submit">
+                                <div class="form-group d-flex justify-content-between">
+                                    <a href="index.php" class="btn btn-dark">Home</a>
+                                    <input type="submit" class="btn btn-primary btn-md" name="registerSubmitBtn" value="Submit">
                                 </div>
                             </form>
                         </div>
@@ -91,6 +89,8 @@ if (isset($_SESSION["authenticated"]))
         </div>
     </div>
 </div>
+
+
 
 <script src="js/utilityFunctions.js"></script>
 

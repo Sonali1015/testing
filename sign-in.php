@@ -21,45 +21,42 @@ if (isset($_SESSION["authenticated"]))
 
     <title>Sign in</title>
 </head>
-<body class="bg-secondary">
+<body class="bg-light">
 
 <div class="container py-5">
     <div class="row">
         <div class="col-md-12">
-            <h2 class="text-center mb-5">Hotel Management System Login</h2>
+            <!-- <h2 class="text-center mb-5">Hotel Management System Login</h2> -->
             <div class="row">
                 <div class="col-md-6 mx-auto">
-                    <div class="card border-secondary">
-                        <div class="card-header">
+                    <div class="card border-secondary" style="background-color: #2c2c2c; color: #f1f1f1;">
+                        <div class="card-header" style="background-color: #333; color: #f1f1f1;">
                             <h3 class="mb-0 my-2">Login</h3>
                         </div>
                         <div class="card-body">
                             <form class="form" role="form" autocomplete="off" id="login-form" method="post">
                                 <div class="form-group">
-                                    <label for="loginEmail">Email</label>
-                                    <span class="red-asterisk"> *</span>
-                                    <input type="text" class="form-control"
-                                           id="loginEmail"
-                                           name="loginEmail"
+                                    <label for="loginEmail" style="color: #f1f1f1;">Email</label>
+                                    <span class="red-asterisk" style="color: #ff4d4d;"> *</span>
+                                    <input type="text" class="form-control" id="loginEmail" name="loginEmail"
                                            placeholder="email address"
+                                           style="background-color: #3a3a3a; color: #f1f1f1; border: 1px solid #555;"
                                            required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="loginPassword">Password</label>
-                                    <span class="red-asterisk"> *</span>
-                                    <input type="password" class="form-control"
-                                           id="loginPassword"
-                                           name="loginPassword"
+                                    <label for="loginPassword" style="color: #f1f1f1;">Password</label>
+                                    <span class="red-asterisk" style="color: #ff4d4d;"> *</span>
+                                    <input type="password" class="form-control" id="loginPassword" name="loginPassword"
                                            placeholder="password"
+                                           style="background-color: #3a3a3a; color: #f1f1f1; border: 1px solid #555;"
                                            required>
                                 </div>
                                 <div class="form-group">
-                                    <p>Not registered? <a href="register.php">Register here.</a></p>
+                                    <p style="color: #cccccc;">Not registered? <a href="register.php">Register here.</a></p>
                                 </div>
                                 <div class="form-group">
-                                    <a  href="index.php" class="btn btn-dark">Home</a>
-                                    <input type="submit" class="btn btn-primary btn-md float-right"
-                                           value="Sign in" name="loginSubmitBtn">
+                                    <a href="index.php" class="btn btn-dark">Home</a>
+                                    <input type="submit" class="btn btn-primary btn-md float-right" value="Sign in" name="loginSubmitBtn">
                                 </div>
                             </form>
                         </div>
