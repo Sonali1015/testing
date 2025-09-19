@@ -4,7 +4,9 @@ class DB
 {
     private static $instance = null;
 
-    private function __construct() {}
+    private function __construct()
+    {
+    }
 
     public static function getInstance()
     {
@@ -14,7 +16,7 @@ class DB
                 "port" => "3306",
                 "user" => "root",
                 "pass" => "",
-                "name" => "hotel1",
+                "name" => "hotel",
                 "charset" => "UTF-8"
             );
 

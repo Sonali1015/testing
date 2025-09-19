@@ -11,10 +11,7 @@ session_start();
     <meta name="theme-color" content="#ffffff">
 
     <link rel="apple-touch-icon" sizes="180x180" href="image/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="image/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="image/favicon/favicon-16x16.png">
-    <link rel="manifest" href="image/favicon/site.webmanifest">
-    <link rel="mask-icon" href="image/favicon/safari-pinned-tab.svg" color="#5bbad5">
+  
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
@@ -69,50 +66,32 @@ session_start();
 <body>
 
 <header>
-    <div class="bg-dark collapse" id="navbarHeader" style="">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-8 col-md-7 py-4">
-                    <h4 class="text-white">About</h4>
-                    <p class="text-muted">Add some information about hotel booking.</p>
-                </div>
-                <div class="col-sm-4 offset-md-1 py-4 text-right">
-                    <?php if ($isSessionExists) { ?>
-                    <h4 class="text-white"><?php echo $username; ?></h4>
-                    <ul class="list-unstyled">
-                        <?php if ($isAdmin[1] == "true" && isset($_COOKIE['is_admin']) && $_COOKIE['is_admin'] == "true") { ?>
-                        <li><a href="admin.php" class="text-white">Manage customer reservation(s)<i class="far fa-address-book ml-2"></i></a></li>
-                        <?php } else { ?>
-                        <li><a href="#" class="text-white my-reservations">View my bookings<i class="far fa-address-book ml-2"></i></a></li>
-                        <li>
-                            <a href="#" class="text-white" data-toggle="modal" data-target="#myProfileModal">Update profile<i class="fas fa-user ml-2"></i></a>
-                        </li>
-                        <?php } ?>
-                        <li><a href="#" id="sign-out-link" class="text-white">Sign out<i class="fas fa-sign-out-alt ml-2"></i></a></li>
-                    </ul>
-                    <?php } else { ?>
-                   <h4>
-            <a class="text-white" href="sign-in.php">Sign in</a> 
-            <span class="text-white">or</span>
-            <a href="register.php" class="text-white">Register</a>
-        </h4>
-                    <!-- <p class="text-muted">Log in so you can take advantage with our hotel room prices.</p> -->
-                    <?php } ?>
-                </div>
-            </div>
+   <div class="navbar navbar-dark bg-dark box-shadow">
+    <div class="container d-flex justify-content-between align-items-center">
+        <!-- Brand -->
+        <a href="#" class="navbar-brand d-flex align-items-center">
+            <strong>LuxStay</strong>
+        </a>
+
+        <!-- Right side buttons -->
+        <div>
+            <?php if ($isSessionExists) { ?>
+                <span class="text-white mr-3"><?php echo $username; ?></span>
+                <?php if ($isAdmin[1] == "true" && isset($_COOKIE['is_admin']) && $_COOKIE['is_admin'] == "true") { ?>
+                    <a href="admin.php" class="btn btn-outline-light btn-sm mr-2">Admin Panel</a>
+                <?php } else { ?>
+                    <a href="#" class="btn btn-outline-light btn-sm mr-2 my-reservations">My Bookings</a>
+                    <a href="#" class="btn btn-outline-light btn-sm mr-2" data-toggle="modal" data-target="#myProfileModal">Profile</a>
+                <?php } ?>
+                <a href="#" id="sign-out-link" class="btn btn-outline-light btn-sm">Sign Out</a>
+            <?php } else { ?>
+                <a href="sign-in.php" class="btn btn-outline-light btn-sm mr-2">Sign In</a>
+                <a href="register.php" class="btn btn-outline-light btn-sm">Register</a>
+            <?php } ?>
         </div>
     </div>
-    <div class="navbar navbar-dark bg-dark box-shadow">
-        <div class="container d-flex justify-content-between">
-            <a href="#" class="navbar-brand d-flex align-items-center">
-                <!-- <i class="fas fa-h-square mr-2"></i> -->
-                <strong>LuxStay</strong>
-            </a>
-            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        </div>
-    </div>
+</div>
+
     <div class="container my-5" id="my-reservations-div">
     <h4 class="reservations-title mb-4">Reservations</h4>
     <div class="row">
@@ -139,7 +118,7 @@ session_start();
             <?php } ?>
         <?php } else { ?>
             <div class="col-12">
-                <p class="text-muted">No reservations found</p>
+                <p class="text-muted">No reservations found.</p>
             </div>
         <?php } ?>
     </div>
@@ -149,7 +128,7 @@ session_start();
 
 </header>
 
-<main role="main">
+<main role="main" class="bg-dark">
 
    <section class="jumbotron jumbotron-custom d-flex align-items-center">
     <div class="container text-left pl-5">
@@ -157,11 +136,11 @@ session_start();
        <p class="lead text-white mb-5">Discover amazing hotels and book your next vacation with ease.</p>
 
         <?php if ($isSessionExists) { ?>
-        <a href="#" class="btn btn-success btn-lg" data-toggle="modal" data-target=".book-now-modal-lg">
+        <a href="#" class="btn btn-success btn-lg " style="background-color: #2b9d31ff;"data-toggle="modal" data-target=".book-now-modal-lg">
             Book now <i class="fas fa-angle-double-right ml-1"></i>
         </a>
         <?php } else { ?>
-        <a href="#" class="btn btn-success btn-lg bg-dark" style="background-color: #343a40;" data-toggle="modal" data-target=".sign-in-to-book-modal">
+        <a href="#" class="btn btn-success btn-lg " style="background-color: #2b9d31ff;" data-toggle="modal" data-target=".sign-in-to-book-modal">
             Book now <i class="fas fa-angle-double-right ml-1"></i>
         </a>
         <?php } ?>
@@ -170,17 +149,16 @@ session_start();
 
 
 
-    <div class="container">
-        <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-            <h1 class="display-4">Why Choose Us</h1>
-            <p class="lead">Quickly build an effective pricing table for your potential customers with this Bootstrap example. It's built with default Bootstrap components and utilities with little customization.</p>
-            <a href="#" class="btn btn-success btn-lg bg-dark" style="background-color: #343a40;" >
-            Read More 
-        </a>
-        </div>
+    <div class="container bg-dark">
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+        <h1 class="display-4" style="color: #ffffff;">Why Choose Us</h1>
+        <p class="lead" style="color: #dddddd;">Quickly build an effective pricing table for your potential customers with this Bootstrap example. It's built with default Bootstrap components and utilities with little customization.</p>
+        <a href="#" class="btn btn-success btn-lg" style="background-color: #38b445;">Read More</a>
     </div>
+</div>
 
-    <div class="album py-5 bg-light">
+
+    <div class="album py-5 bg-dark">
     <div class="container">
         <div class="row">
             <!-- Deluxe Room -->
@@ -250,112 +228,137 @@ session_start();
     <?php if(isset($_COOKIE['is_admin']) && $_COOKIE['is_admin'] == "false") : ?>
     <div class="modal fade book-now-modal-lg" tabindex="-1" role="dialog" aria-labelledby="bookNowModalLarge" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
+            <div class="modal-content" style="background-color: #000000ff; color: #f1f1f1;">
                 <div class="modal-header">
-                    <h5 class="modal-title">Reservation form</h5>
+                    <h5 class="modal-title text-center">Reservation form</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
 
-                <div class="modal-body" id="reservationModalBody">
-                    <?php if ($isSessionExists == 1 && $isAdmin[1] == "false") { ?>
-                        <form role="form" autocomplete="off" method="post" id="multiStepRsvnForm">
-                            <div class="rsvnTab">
-                                <?php if ($isSessionExists) { ?>
-                                    <input type="number" name="cid" value="<?php echo $cHandler->getId() ?>" hidden>
-                                <?php } ?>
-                                <div class="form-group row">
-                                    <label for="startDate" class="col-sm-3 col-form-label">Check-in
-                                        <span class="red-asterisk"> *</span>
-                                    </label>
-                                    <div class="col-sm-9">
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">
-                                                    <i class="fa fa-calendar"></i>
-                                                </span>
-                                            </div>
-                                            <input type="date" class="form-control"
-                                                   name="startDate"  min="<?php echo Util::dateToday('0'); ?>" required>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="endDate" class="col-sm-3 col-form-label">Check-out
-                                        <span class="red-asterisk"> *</span>
-                                    </label>
-                                    <div class="col-sm-9">
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text" id="inputGroupPrepend">
-                                                    <i class="fa fa-calendar"></i>
-                                                </span>
-                                            </div>
-                                            <input type="date" class="form-control"  min="<?php echo Util::dateToday('1'); ?>" name="endDate" required>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group row align-items-center">
-                                    <label class="col-sm-3 col-form-label" for="roomType">Room type
-                                        <span class="red-asterisk"> *</span>
-                                    </label>
-                                    <div class="col-sm-9">
-                                        <select required class="custom-select mr-sm-2"  name="roomType">
-                                            <option value="<?php echo \models\RequirementEnum::DELUXE; ?>">Deluxe room</option>
-                                            <option value="<?php echo \models\RequirementEnum::DOUBLE; ?>">Double room</option>
-                                            <option value="<?php echo \models\RequirementEnum::SINGLE; ?>">Single room</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group row align-items-center">
-                                    <label class="col-sm-3 col-form-label" for="roomRequirement">Room requirements</label>
-                                    <div class="col-sm-9">
-                                        <select class="custom-select mr-sm-2"  name="roomRequirement">
-                                            <option value="no preference" selected>No preference</option>
-                                            <option value="non smoking">Non smoking</option>
-                                            <option value="smoking">Smoking</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group row align-items-center">
-                                    <label class="col-sm-3 col-form-label" for="adults">Adults
-                                        <span class="red-asterisk"> *</span>
-                                    </label>
-                                    <div class="col-sm-9">
-                                        <select required class="custom-select mr-sm-2"  name="adults">
-                                            <option selected value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group row align-items-center">
-                                    <label class="col-sm-3 col-form-label" for="children">Children</label>
-                                    <div class="col-sm-9">
-                                        <select class="custom-select mr-sm-2"  name="children">
-                                            <option selected value="0">-</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group row align-items-center">
-                                    <label class="col-sm-3 col-form-label" for="specialRequests">Special requirements</label>
-                                    <div class="col-sm-9">
-                                        <textarea rows="3" maxlength="500"  name="specialRequests" class="form-control"></textarea>
-                                    </div>
-                                </div>
-                                <div class="form-group row align-items-center">
-                                    <button type="button" class="btn btn-info" style="margin-left: 0.8em;" data-container="body" data-toggle="popover"
-                                            data-placement="right" data-content="Check-in time starts at 3 PM. If a late check-in is planned, please contact our support department.">
-                                        Check-in policies
-                                    </button>
-                                </div>
+                <div class="modal-body" id="reservationModalBody" >
+    <?php if ($isSessionExists == 1 && $isAdmin[1] == "false") { ?>
+        <form role="form" autocomplete="off" method="post" id="multiStepRsvnForm">
+            <div class="rsvnTab">
+                <?php if ($isSessionExists) { ?>
+                    <input type="number" name="cid" value="<?php echo $cHandler->getId() ?>" hidden>
+                <?php } ?>
+
+                <!-- Check-in Date -->
+                <div class="form-group row">
+                    <label for="startDate" class="col-sm-3 col-form-label" style="color: #f1f1f1;">Check-in
+                        <span class="red-asterisk" style="color: #ff4d4d;">*</span>
+                    </label>
+                    <div class="col-sm-9">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" style="background-color: #3a3a3a; color: #f1f1f1; border: 1px solid #555;">
+                                    <i class="fa fa-calendar"></i>
+                                </span>
                             </div>
+                            <input type="date" class="form-control" name="startDate" min="<?php echo Util::dateToday('0'); ?>" required
+                                   style="background-color: #3a3a3a; color: #f1f1f1; border: 1px solid #555;">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Check-out Date -->
+                <div class="form-group row">
+                    <label for="endDate" class="col-sm-3 col-form-label" style="color: #f1f1f1;">Check-out
+                        <span class="red-asterisk" style="color: #ff4d4d;">*</span>
+                    </label>
+                    <div class="col-sm-9">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" style="background-color: #3a3a3a; color: #f1f1f1; border: 1px solid #555;">
+                                    <i class="fa fa-calendar"></i>
+                                </span>
+                            </div>
+                            <input type="date" class="form-control" name="endDate" min="<?php echo Util::dateToday('1'); ?>" required
+                                   style="background-color: #3a3a3a; color: #f1f1f1; border: 1px solid #555;">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Room type -->
+                <div class="form-group row align-items-center">
+                    <label class="col-sm-3 col-form-label" for="roomType" style="color: #f1f1f1;">Room type
+                        <span class="red-asterisk" style="color: #ff4d4d;">*</span>
+                    </label>
+                    <div class="col-sm-9">
+                        <select required class="custom-select mr-sm-2" name="roomType" 
+                                style="background-color: #3a3a3a; color: #f1f1f1; border: 1px solid #555;">
+                            <option value="<?php echo \models\RequirementEnum::DELUXE; ?>">Deluxe room</option>
+                            <option value="<?php echo \models\RequirementEnum::DOUBLE; ?>">Double room</option>
+                            <option value="<?php echo \models\RequirementEnum::SINGLE; ?>">Single room</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Room requirements -->
+                <div class="form-group row align-items-center">
+                    <label class="col-sm-3 col-form-label" for="roomRequirement" style="color: #f1f1f1;">Room requirements</label>
+                    <div class="col-sm-9">
+                        <select class="custom-select mr-sm-2" name="roomRequirement" 
+                                style="background-color: #3a3a3a; color: #f1f1f1; border: 1px solid #555;">
+                            <option value="no preference" selected>No preference</option>
+                            <option value="non smoking">Non smoking</option>
+                            <option value="smoking">Smoking</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Adults -->
+                <div class="form-group row align-items-center">
+                    <label class="col-sm-3 col-form-label" for="adults" style="color: #f1f1f1;">Adults
+                        <span class="red-asterisk" style="color: #ff4d4d;">*</span>
+                    </label>
+                    <div class="col-sm-9">
+                        <select required class="custom-select mr-sm-2" name="adults" 
+                                style="background-color: #3a3a3a; color: #f1f1f1; border: 1px solid #555;">
+                            <option selected value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Children -->
+                <div class="form-group row align-items-center">
+                    <label class="col-sm-3 col-form-label" for="children" style="color: #f1f1f1;">Children</label>
+                    <div class="col-sm-9">
+                        <select class="custom-select mr-sm-2" name="children" 
+                                style="background-color: #3a3a3a; color: #f1f1f1; border: 1px solid #555;">
+                            <option selected value="0">-</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Special requests -->
+                <div class="form-group row align-items-center">
+                    <label class="col-sm-3 col-form-label" for="specialRequests" style="color: #f1f1f1;">Special requirements</label>
+                    <div class="col-sm-9">
+                        <textarea rows="3" maxlength="500" name="specialRequests" class="form-control" 
+                                  style="background-color: #3a3a3a; color: #f1f1f1; border: 1px solid #555;"></textarea>
+                    </div>
+                </div>
+
+                <!-- Check-in policies button
+                <div class="form-group row align-items-center">
+                    <button type="button" class="btn btn-info" style="margin-left: 0.8em;" 
+                            data-container="body" data-toggle="popover"
+                            data-placement="right" 
+                            data-content="Check-in time starts at 3 PM. If a late check-in is planned, please contact our support department.">
+                        Check-in policies
+                    </button>
+                </div> -->
+            </div>
+
 
                             <div class="rsvnTab">
                                 <div class="form-group row align-items-center">
@@ -431,7 +434,7 @@ session_start();
     <?php if(($isSessionExists == 1 && $isAdmin[1] == "false") && isset($_COOKIE['is_admin']) && $_COOKIE['is_admin'] == "false") : ?>
     <div class="modal" id="myProfileModal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
+            <div class="modal-content" style="background-color: #2c2c2c; color: #f1f1f1;">
                 <div class="modal-header">
                     <h5 class="modal-title">Update Profile</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -439,40 +442,45 @@ session_start();
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="card border-0">
-                        <div class="card-body p-0">
-                            <?php if ($isSessionExists) { ?>
-                            <form class="form" role="form" autocomplete="off" id="update-profile-form" method="post">
-                                <input type="number" id="customerId" hidden
-                                       name="customerId" value="<?php echo $cHandler->getId(); ?>" >
-                                <div class="form-group">
-                                    <label for="updateFullName">Full Name</label>
-                                    <input type="text" class="form-control" id="updateFullName"
-                                           name="updateFullName" value="<?php echo $cHandler->getFullName(); ?>" >
-                                </div>
-                                <div class="form-group">
-                                    <label for="updatePhoneNumber">Phone Number</label>
-                                    <input type="text" class="form-control" id="updatePhoneNumber"
-                                           name="updatePhoneNumber" value="<?php echo $cHandler->getPhone(); ?>">
-                                </div>
-                                <div class="form-group">
-                                    <label for="updateEmail">Email</label>
-                                    <input type="email" class="form-control" id="updateEmail"
-                                           name="updateEmail" value="<?php echo $cHandler->getEmail(); ?>" readonly>
-                                </div>
-                                <div class="form-group">
-                                    <label for="updatePassword">New Password</label>
-                                    <input type="password" class="form-control" id="updatePassword"
-                                           name="updatePassword"
-                                           title="At least 4 characters with letters and numbers">
-                                </div>
-                                <div class="form-group">
-                                    <input type="submit" class="btn btn-primary btn-md float-right"
-                                           name="updateProfileSubmitBtn" value="Update">
-                                </div>
-                            </form>
-                            <?php } ?>
-                        </div>
+                    <div class="card border-0" style="background-color: #2c2c2c; color: #f1f1f1;">
+    <div class="card-body p-0">
+        <?php if ($isSessionExists) { ?>
+        <form class="form" role="form" autocomplete="off" id="update-profile-form" method="post">
+            <input type="number" id="customerId" hidden
+                   name="customerId" value="<?php echo $cHandler->getId(); ?>" >
+            <div class="form-group">
+                <label for="updateFullName" style="color: #f1f1f1;">Full Name</label>
+                <input type="text" class="form-control bg-secondary text-light border-secondary" 
+                       id="updateFullName" name="updateFullName" 
+                       value="<?php echo $cHandler->getFullName(); ?>" >
+            </div>
+            <div class="form-group">
+                <label for="updatePhoneNumber" style="color: #f1f1f1;">Phone Number</label>
+                <input type="text" class="form-control bg-secondary text-light border-secondary" 
+                       id="updatePhoneNumber" name="updatePhoneNumber" 
+                       value="<?php echo $cHandler->getPhone(); ?>">
+            </div>
+            <div class="form-group">
+                <label for="updateEmail" style="color: #f1f1f1;">Email</label>
+                <input type="email" class="form-control bg-secondary text-light border-secondary" 
+                       id="updateEmail" name="updateEmail" 
+                       value="<?php echo $cHandler->getEmail(); ?>" readonly>
+            </div>
+            <div class="form-group">
+                <label for="updatePassword" style="color: #f1f1f1;">New Password</label>
+                <input type="password" class="form-control bg-secondary text-light border-secondary" 
+                       id="updatePassword" name="updatePassword"
+                       title="At least 4 characters with letters and numbers">
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary btn-md float-right"
+                       name="updateProfileSubmitBtn" value="Update">
+            </div>
+        </form>
+        <?php } ?>
+    </div>
+</div>
+
                     </div>
                 </div>
             </div>
@@ -481,8 +489,9 @@ session_start();
     <?php endif; ?>
 
 </main>
-
 <footer class="footer bg-dark text-center text-white py-3">
+    <hr style="background-color: #ffffff;">
+
     <p>&copy; 2025 LuxStay. All rights reserved.</p>
 </footer>
 
